@@ -136,7 +136,7 @@ public class SearchQueryBuilder {
         long indexes = total / Long.parseLong(nbUrlsPage);
         indexes++;
 
-        String dateInsert = response.hits().hits().get(0).source().getDateSoutenance();
+        String dateInsert = response.hits().hits().get(0).source().getDateInsertionDansES();
 
         List<UrlSiteMap> liste = new ArrayList<>();
         for (int i = 0; i < indexes; i++) {
@@ -151,7 +151,7 @@ public class SearchQueryBuilder {
 
     private List<SortOptions> addTri() {
         List<SortOptions> list = new ArrayList<>();
-        SortOptions sort = new SortOptions.Builder().field(f -> f.field("dateSoutenance").order(SortOrder.Desc)).build();
+        SortOptions sort = new SortOptions.Builder().field(f -> f.field("dateInsertionDansES").order(SortOrder.Desc)).build();
         list.add(sort);
         return list;
     }
