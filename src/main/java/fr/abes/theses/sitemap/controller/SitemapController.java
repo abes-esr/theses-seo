@@ -9,20 +9,13 @@ import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Optional;
 @Slf4j
 @RestController
@@ -59,12 +52,27 @@ public class SitemapController {
         }
     }
 
+    @ResponseBody
     @GetMapping(value = "/robots.txt", produces = "text/plain")
-    public ResponseEntity robots() throws IOException {
-        InputStream inputStream = new FileInputStream(new File(robotsPath));
-        InputStreamResource inputStreamResource = new InputStreamResource(inputStream);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentLength(Files.size(Paths.get(robotsPath)));
-        return new ResponseEntity(inputStreamResource, headers, HttpStatus.OK);
+    @ApiOperation(
+            value = "renvoyer le robots.txt")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Opération terminée avec succès"),
+            @ApiResponse(code = 400, message = "Mauvaise requête"),
+            @ApiResponse(code = 503, message = "Service indisponible"),
+    })
+    public String robots() throws IOException {
+
+        URL url = new URL(robotsPath);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        String inputLine;
+        StringBuilder content = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine.concat("\n"));
+        }
+        in.close();
+        return content.toString();
     }
 }
