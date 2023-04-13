@@ -25,6 +25,7 @@ import org.apache.http.conn.ssl.TrustAllStrategy;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.ssl.SSLContexts;
 import org.elasticsearch.client.RestClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -37,7 +38,8 @@ import java.util.List;
 @Component
 public class SearchQueryBuilder {
 
-    private final UrlMapper urlMapper = new UrlMapper();
+    @Autowired
+    private UrlMapper urlMapper;
     @Value("${es.hostname}")
     private String esHostname;
     @Value("${es.port}")
