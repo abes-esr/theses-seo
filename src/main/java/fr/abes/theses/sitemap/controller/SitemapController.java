@@ -29,7 +29,7 @@ public class SitemapController {
     String robotsPath;
 
     @ResponseBody
-    @GetMapping(value = "SiteMap", produces = MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(value = "sitemap.xml", produces = MediaType.APPLICATION_XML_VALUE)
     @ApiOperation(
             value = "renvoyer le sitemap",
             notes = "sans paramètre start, fournit l'index")
@@ -53,7 +53,7 @@ public class SitemapController {
     }
 
     @ResponseBody
-    @GetMapping(value = "/robots.txt", produces = "text/plain")
+    @GetMapping(value = "robots.txt", produces = "text/plain")
     @ApiOperation(
             value = "renvoyer le robots.txt")
     @ApiResponses(value = {
