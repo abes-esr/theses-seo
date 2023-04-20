@@ -112,8 +112,6 @@ public class SearchQueryBuilder {
         while (iterator.hasNext()) {
             Hit<These> theseHit = iterator.next();
             liste.add(urlMapper.theseToUrlThese(theseHit, false));
-            if (theseHit.source().getAccessible().equals("oui"))
-                liste.add(urlMapper.theseToUrlThese(theseHit, true));
         }
 
         ResponseUrlThese res = new ResponseUrlThese();
