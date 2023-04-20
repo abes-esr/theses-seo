@@ -24,6 +24,7 @@ public class These {
     Date dateSoutenance;
     Date datePremiereInscriptionDoctorat;
     Date dateFinEmbargo;
+    Date dateFiltre;
     List<String> langues;
     List<String> oaiSets;
     List<String> oaiSetNames;
