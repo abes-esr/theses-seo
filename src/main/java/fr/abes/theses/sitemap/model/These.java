@@ -22,13 +22,15 @@ public class These {
     String source;
     String codeEtab;
     Date dateSoutenance;
-    Date datePremiereInscriptionDoctorat;
     Date dateFinEmbargo;
     Date dateFiltre;
+    Date datePremiereInscriptionDoctorat;
     List<String> langues;
     List<String> oaiSets;
+
     List<String> oaiSetNames;
-    Map<String, String> sujets;
+    List<Sujet> sujets;
+    List<String> sujetsLibelle;
     String discipline;
     Map<String, String> titres;
     Map<String, String> resumes;
@@ -36,7 +38,9 @@ public class These {
     String etabSoutenanceN;
     List<Organisme> partenairesRecherche;
     List<String> partenairesRechercheN;
-    List<String> sujetsRameau;
+    List<String> sujetsRameauLibelle;
+    List<String> sujetsRameauPpn;
+    List<SujetsRameau> sujetsRameau;
     List<PersonneThese> membresJury;
     List<String> membresJuryNP;
     List<PersonneThese> rapporteurs;
@@ -45,6 +49,7 @@ public class These {
     List<String> auteursNP;
     List<PersonneThese> directeurs;
     List<String> directeursNP;
+
     List<Organisme> ecolesDoctorales;
     List<String> ecolesDoctoralesN;
     List<Organisme> etabsCotutelle;
@@ -53,8 +58,4 @@ public class These {
     String presidentJuryNP;
     String theseTravaux;
 
-    public String getDateSoutenance() {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        return dateSoutenance != null ? dateFormat.format(dateSoutenance) : null;
-    }
 }
