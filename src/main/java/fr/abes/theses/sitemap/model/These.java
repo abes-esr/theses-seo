@@ -19,6 +19,7 @@ public class These {
     String nnt;
     String accessible;
     String status;
+    Boolean isSoutenue;
     String source;
     String codeEtab;
     Date dateSoutenance;
@@ -36,8 +37,10 @@ public class These {
     Map<String, String> resumes;
     Organisme etabSoutenance;
     String etabSoutenanceN;
+    String etabSoutenancePpn;
     List<Organisme> partenairesRecherche;
     List<String> partenairesRechercheN;
+    List<String> partenairesRecherchePpn;
     List<String> sujetsRameauLibelle;
     List<String> sujetsRameauPpn;
     List<SujetsRameau> sujetsRameau;
@@ -49,9 +52,10 @@ public class These {
     List<String> auteursNP;
     List<PersonneThese> directeurs;
     List<String> directeursNP;
-
+    List<String> ecolesDoctoralesPpn;
     List<Organisme> ecolesDoctorales;
     List<String> ecolesDoctoralesN;
+    List<String> etabsCotutellePpn;
     List<Organisme> etabsCotutelle;
     List<String> etabsCotutelleN;
     PersonneThese presidentJury;
