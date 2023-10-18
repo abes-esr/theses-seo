@@ -9,6 +9,7 @@ import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
+import fr.abes.theses.sitemap.config.ElasticClient;
 import fr.abes.theses.sitemap.converters.UrlMapper;
 import fr.abes.theses.sitemap.dto.ResponseUrlSiteMap;
 import fr.abes.theses.sitemap.dto.ResponseUrlThese;
@@ -40,50 +41,11 @@ public class SearchQueryBuilder {
 
     @Autowired
     private UrlMapper urlMapper;
-    @Value("${es.hostname}")
-    private String esHostname;
-    @Value("${es.port}")
-    private String esPort;
-    @Value("${es.protocol}")
-    private String esScheme;
-    @Value("${es.username}")
-    private String esUserName;
-    @Value("${es.password}")
-    private String esPassword;
-    private ElasticsearchClient client;
-    @Value("${es.theses.indexname}")
-    private String esIndexName;
     @Value("${nbUrlsPage}")
     private String nbUrlsPage;
+    @Value("${es.theses.indexname}")
+    private String esIndexName;
 
-
-    private ElasticsearchClient getElasticsearchClient() throws Exception {
-        if (this.client == null) {
-            try {
-                CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-                credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(esUserName, esPassword));
-
-                final SSLContext sslContext = SSLContexts.custom()
-                        .loadTrustMaterial(null, TrustAllStrategy.INSTANCE)
-                        .build();
-
-                RestClient client = RestClient.builder(new HttpHost(esHostname, Integer.parseInt(esPort), esScheme)).setHttpClientConfigCallback(httpClientBuilder -> httpClientBuilder
-                        .setDefaultCredentialsProvider(credentialsProvider)
-                        .setSSLContext(sslContext)
-                        .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
-                ).build();
-
-                ElasticsearchTransport transport = new RestClientTransport(
-                        client, new JacksonJsonpMapper());
-
-                return new ElasticsearchClient(transport);
-            } catch (Exception e) {
-                log.error(e.toString());
-                throw e;
-            }
-        }
-        return this.client;
-    }
 
     private MatchAllQuery buildMatchAllQuery() {
         MatchAllQuery.Builder builder = new MatchAllQuery.Builder();
@@ -94,7 +56,7 @@ public class SearchQueryBuilder {
 
         log.info("les urls de theses à partir de " + start);
 
-        SearchResponse<These> response = this.getElasticsearchClient().search(
+        SearchResponse<These> response = ElasticClient.getElasticsearchClient().search(
                 s -> s
                         .index(esIndexName)
                         .query(q -> q.matchAll(this.buildMatchAllQuery()))
@@ -112,8 +74,6 @@ public class SearchQueryBuilder {
         while (iterator.hasNext()) {
             Hit<These> theseHit = iterator.next();
             liste.add(urlMapper.theseToUrlThese(theseHit, false));
-            if (theseHit.source().getAccessible().equals("oui"))
-                liste.add(urlMapper.theseToUrlThese(theseHit, true));
         }
 
         ResponseUrlThese res = new ResponseUrlThese();
@@ -125,7 +85,7 @@ public class SearchQueryBuilder {
 
         log.info("les urls de sitemap...");
 
-        SearchResponse<These> response = this.getElasticsearchClient().search(
+        SearchResponse<These> response = ElasticClient.getElasticsearchClient().search(
                 s -> s
                         .index(esIndexName)
                         .query(q -> q.matchAll(this.buildMatchAllQuery()))
