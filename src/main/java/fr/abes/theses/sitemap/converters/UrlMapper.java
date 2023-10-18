@@ -13,7 +13,7 @@ public class UrlMapper {
     private String racine;
     public UrlThese theseToUrlThese(Hit<These> theseHit, Boolean afficheDocument) {
         return UrlThese.builder()
-                .loc(!afficheDocument? racine.concat("these/".concat(theseHit.id())):racine.concat("these/".concat(theseHit.id())).concat("/document"))
+                .loc(!afficheDocument? racine.concat(theseHit.id()).concat("?domaine=theses"):racine.concat("api/v1/document/".concat(theseHit.id())))
                 .priority("0.5")
                 .build();
     }
