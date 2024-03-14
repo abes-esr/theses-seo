@@ -25,7 +25,7 @@ public class UrlMapper {
     }
     public UrlSiteMap geturlSiteMap(int start, String dateInsertion) {
         return UrlSiteMap.builder()
-                .loc(racine.concat("sitemap.xml?start=".concat(String.valueOf(start))))
+                .loc(racine.concat("/sitemap.xml?start=".concat(String.valueOf(start))))
                 .lastmod(dateInsertion)
                 .build();
     }
