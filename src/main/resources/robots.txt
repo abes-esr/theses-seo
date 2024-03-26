@@ -1,6 +1,6 @@
 User-agent: *
 Crawl-delay: 5
-sitemap: https://v2-prod.theses.fr/sitemap.xml
+sitemap: https://theses.fr/sitemap.xml
 Disallow: /s175076
 Disallow: /s380979
 Disallow: /032651287
