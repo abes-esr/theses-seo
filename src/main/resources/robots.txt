@@ -1,6 +1,8 @@
 User-agent: *
 Crawl-delay: 5
 Sitemap: https://theses.fr/sitemap.xml
+Disallow: /180481258
+Disallow: /2013AIXM3065
 Disallow: /152887474
 Disallow: /2010PA111006
 Disallow: /280714912
