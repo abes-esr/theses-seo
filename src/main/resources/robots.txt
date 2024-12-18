@@ -5,8 +5,6 @@ Disallow: /2018UBFCF012
 Disallow: /236277014
 Disallow: /176049347
 Disallow: /2013PA040100
-Disallow: /180481258
-Disallow: /2013AIXM3065
 Disallow: /152887474
 Disallow: /2010PA111006
 Disallow: /280714912
