@@ -1,6 +1,8 @@
 User-agent: *
 Crawl-delay: 5
 Sitemap: https://theses.fr/sitemap.xml
+Disallow: /2007STET010T
+Disallow: /2007STET010T.bib
 Disallow: /2018UBFCF012
 Disallow: /236277014
 Disallow: /176049347
