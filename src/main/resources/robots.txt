@@ -181,3 +181,5 @@ Disallow: /s258172
 Disallow: /s294724
 Disallow: /s358412
 Disallow: /s45811
+Disallow: /260408514
+Disallow: /1998BOR10548
