@@ -19,6 +19,7 @@ public class These {
     String cas;
     String titrePrincipal;
     String nnt;
+    String doi;
     String numSujet;
     String numSujetSansS;
     String accessible;
@@ -30,6 +31,7 @@ public class These {
     Date dateFinEmbargo;
     Date dateFiltre;
     Date datePremiereInscriptionDoctorat;
+    Date dateCines;
     List<String> langues;
     List<String> oaiSets;
 
