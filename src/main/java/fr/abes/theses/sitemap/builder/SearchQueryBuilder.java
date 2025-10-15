@@ -1,14 +1,10 @@
 package fr.abes.theses.sitemap.builder;
 
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchAllQuery;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransport;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
 import fr.abes.theses.sitemap.config.ElasticClient;
 import fr.abes.theses.sitemap.converters.UrlMapper;
 import fr.abes.theses.sitemap.dto.ResponseUrlSiteMap;
@@ -17,20 +13,9 @@ import fr.abes.theses.sitemap.dto.UrlSiteMap;
 import fr.abes.theses.sitemap.dto.UrlThese;
 import fr.abes.theses.sitemap.model.These;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.conn.ssl.TrustAllStrategy;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.ssl.SSLContexts;
-import org.elasticsearch.client.RestClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import javax.net.ssl.SSLContext;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
