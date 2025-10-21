@@ -184,6 +184,8 @@ Disallow: /260408514
 Disallow: /1998BOR10548
 Disallow: /2011EHES0468
 Disallow: /2022STRAB008
+Disallow: /2014PA010053
+Disallow: /26330373X
 Disallow: /270666494
 Disallow: /2002PA030119
 Disallow: /2016PESC0044
