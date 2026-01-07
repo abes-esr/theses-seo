@@ -192,3 +192,5 @@ Disallow: /2016PESC0044
 Disallow: /226938646
 Disallow: /2017PSLEC004
 Disallow: /2024AIXM0640
+Disallow: /2022EMSEM023
+Disallow: /270350292
